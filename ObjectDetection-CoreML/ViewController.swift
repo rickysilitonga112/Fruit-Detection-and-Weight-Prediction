@@ -27,7 +27,7 @@ class ViewController: UIViewController {
     // MobileNetV2_SSDLite(iOS12+), ObjectDetector(iOS12+)
     // yolov5n(iOS13+), yolov5s(iOS13+), yolov5m(iOS13+), yolov5l(iOS13+), yolov5x(iOS13+)
     // yolov5n6(iOS13+), yolov5s6(iOS13+), yolov5m6(iOS13+), yolov5l6(iOS13+), yolov5x6(iOS13+)
-    let objectDectectionModel = yolov5s()
+    let objectDectectionModel = FruitDetectionV3()
     
     // MARK: - Vision Properties
     var request: VNCoreMLRequest?
@@ -182,10 +182,30 @@ extension ViewController: UITableViewDataSource {
 
         let rectString = predictions[indexPath.row].boundingBox.toString(digit: 2)
         let confidence = predictions[indexPath.row].labels.first?.confidence ?? -1
-        let confidenceString = String(format: "%.3f", confidence/*Math.sigmoid(confidence)*/)
+        let confidenceString = String(format: "%.2f", confidence/*Math.sigmoid(confidence)*/)
         
         cell.textLabel?.text = predictions[indexPath.row].label ?? "N/A"
-        cell.detailTextLabel?.text = "\(rectString), \(confidenceString)"
+        
+        print("Data prediksi: \(String(describing: predictions[indexPath.row].label))" )
+        
+        print("Jumlah array predictions: \(predictions.count)")
+        
+        
+        print("isi : \(predictions[indexPath.row].boundingBox)")
+//        cell.detailTextLabel?.text = "\(rectString), \(confidenceString)"
+        
+        let area = predictions[indexPath.row].boundingBox.width * predictions[indexPath.row].boundingBox.height
+//        let areaString = String(format: "%.2f", area)
+        let areaString = String(format: "%.5f", area)
+        
+        var weightPrediction: Double = 0
+        
+        if let fruitName = predictions[indexPath.row].label {
+            weightPrediction = WeightManager.predictWeight(fruit: fruitName, area: Double(areaString) ?? 0)
+        }
+        
+        cell.detailTextLabel?.text = "Area: \(areaString) Wp: \(weightPrediction)"
+        
         return cell
     }
 }

@@ -17,9 +17,10 @@
 		554F14AE220362DA00B828B0 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F14AD220362DA00B828B0 /* VideoCapture.swift */; };
 		558918ED2208218800F182BA /* DrawingBoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558918EC2208218800F182BA /* DrawingBoundingBoxView.swift */; };
 		558918EF22089FFE00F182BA /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558918EE22089FFE00F182BA /* Measure.swift */; };
-		C427E67328C2DD18001279AD /* yolov5s.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C427E67228C2DD18001279AD /* yolov5s.mlmodel */; };
+		5677CBD9292D458E009EEC5A /* FruitDetectionV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */; };
+		5677CBDA292D458E009EEC5A /* FruitDetectionV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */; };
+		5684B1132930AD940011620E /* WeightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1122930AD940011620E /* WeightManager.swift */; };
 		C427E6B228C5D85B001279AD /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553366CE220489DD00A67647 /* UIImage+CVPixelBuffer.swift */; };
-		C427E6BD28C5D89B001279AD /* yolov5s.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C427E67228C2DD18001279AD /* yolov5s.mlmodel */; };
 		C427E6C928C5DAF3001279AD /* IMG_8564.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C427E6C828C5DAF3001279AD /* IMG_8564.JPG */; };
 /* End PBXBuildFile section */
 
@@ -48,7 +49,8 @@
 		554F14AD220362DA00B828B0 /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 		558918EC2208218800F182BA /* DrawingBoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoundingBoxView.swift; sourceTree = "<group>"; };
 		558918EE22089FFE00F182BA /* Measure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
-		C427E67228C2DD18001279AD /* yolov5s.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = yolov5s.mlmodel; sourceTree = "<group>"; };
+		5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FruitDetectionV3.mlmodel; sourceTree = "<group>"; };
+		5684B1122930AD940011620E /* WeightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightManager.swift; sourceTree = "<group>"; };
 		C427E6C828C5DAF3001279AD /* IMG_8564.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_8564.JPG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,18 +108,19 @@
 				554F149D220362AB00B828B0 /* ViewController.swift */,
 				558918EC2208218800F182BA /* DrawingBoundingBoxView.swift */,
 				71B8322322E2B0BC00207D05 /* ultils */,
-				71B8322222E2B0B200207D05 /* mlmodel */,
+				565E81F7290C77D800E453D6 /* mlmodel */,
 				554F14A2220362AC00B828B0 /* Assets.xcassets */,
 				554F14A4220362AC00B828B0 /* LaunchScreen.storyboard */,
 				554F14A7220362AC00B828B0 /* Info.plist */,
+				5684B1122930AD940011620E /* WeightManager.swift */,
 			);
 			path = "ObjectDetection-CoreML";
 			sourceTree = "<group>";
 		};
-		71B8322222E2B0B200207D05 /* mlmodel */ = {
+		565E81F7290C77D800E453D6 /* mlmodel */ = {
 			isa = PBXGroup;
 			children = (
-				C427E67228C2DD18001279AD /* yolov5s.mlmodel */,
+				5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */,
 			);
 			path = mlmodel;
 			sourceTree = "<group>";
@@ -234,7 +237,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C427E6BD28C5D89B001279AD /* yolov5s.mlmodel in Sources */,
+				5677CBDA292D458E009EEC5A /* FruitDetectionV3.mlmodel in Sources */,
 				553366C62204898800A67647 /* ObjectDetection_CoreMLTests.swift in Sources */,
 				C427E6B228C5D85B001279AD /* UIImage+CVPixelBuffer.swift in Sources */,
 			);
@@ -245,11 +248,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				554F149E220362AB00B828B0 /* ViewController.swift in Sources */,
+				5684B1132930AD940011620E /* WeightManager.swift in Sources */,
 				558918EF22089FFE00F182BA /* Measure.swift in Sources */,
 				558918ED2208218800F182BA /* DrawingBoundingBoxView.swift in Sources */,
 				553366CF220489DD00A67647 /* UIImage+CVPixelBuffer.swift in Sources */,
 				554F14AE220362DA00B828B0 /* VideoCapture.swift in Sources */,
-				C427E67328C2DD18001279AD /* yolov5s.mlmodel in Sources */,
+				5677CBD9292D458E009EEC5A /* FruitDetectionV3.mlmodel in Sources */,
 				554F149C220362AB00B828B0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -289,7 +293,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5WXJ4Z4H69;
+				DEVELOPMENT_TEAM = KFD27J2TGQ;
 				INFOPLIST_FILE = "ObjectDetection-CoreMLTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -309,7 +313,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5WXJ4Z4H69;
+				DEVELOPMENT_TEAM = KFD27J2TGQ;
 				INFOPLIST_FILE = "ObjectDetection-CoreMLTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -445,7 +449,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5WXJ4Z4H69;
+				DEVELOPMENT_TEAM = KFD27J2TGQ;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				INFOPLIST_FILE = "ObjectDetection-CoreML/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -465,7 +469,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 5WXJ4Z4H69;
+				DEVELOPMENT_TEAM = KFD27J2TGQ;
 				INFOPLIST_FILE = "ObjectDetection-CoreML/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -42,9 +42,13 @@ class DrawingBoundingBoxView: UIView {
         let labelString: String? = prediction.label
         let color: UIColor = labelColor(with: labelString ?? "N/A")
         
+        let originArea = prediction.boundingBox
+        
         let scale = CGAffineTransform.identity.scaledBy(x: bounds.width, y: bounds.height)
         let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -1)
+        
         let bgRect = prediction.boundingBox.applying(transform).applying(scale)
+        
         
         let bgView = UIView(frame: bgRect)
         bgView.layer.borderColor = color.cgColor
@@ -53,7 +57,23 @@ class DrawingBoundingBoxView: UIView {
         addSubview(bgView)
         
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
-        label.text = labelString ?? "N/A"
+        let confidencePercentageString = String(format: "%.0f", (prediction.confidence * 100))
+        
+        
+        print("****************************************************************************")
+        print("Width: \(bounds.width) -- Height: \(bounds.height)")
+        print("BG Rect: \(bgRect)")
+        print("Confidence: \(confidencePercentageString)%")
+        print("****************************************************************************")
+        
+        if let labelString = labelString {
+//            label.text = "\(labelString) - A: \(bgRect.width * bgRect.height)"
+            
+            
+            // TODO: -show label and confidence value
+            label.text = "\(labelString) C: \(confidencePercentageString)% - WP: \(WeightManager.predictWeight(fruit: labelString))"
+        }
+        
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = UIColor.black
         label.backgroundColor = color
