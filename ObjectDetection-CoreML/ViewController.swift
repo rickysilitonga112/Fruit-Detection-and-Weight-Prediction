@@ -45,6 +45,8 @@ class ViewController: UIViewController {
     // MARK - Performance Measurement Property
     private let 👨‍🔧 = 📏()
     
+    var videoCaptureIsRun = false
+    
     let maf1 = MovingAverageFilter()
     let maf2 = MovingAverageFilter()
     let maf3 = MovingAverageFilter()
@@ -70,6 +72,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.videoCapture.start()
+        videoCaptureIsRun = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -116,6 +119,20 @@ class ViewController: UIViewController {
     func resizePreviewLayer() {
         videoCapture.previewLayer?.frame = videoPreview.bounds
     }
+    
+    
+    @IBAction func stopButtonPressed(_ sender: Any) {
+        
+        if videoCaptureIsRun {
+            self.videoCapture.stop()
+            videoCaptureIsRun = false
+        } else if videoCaptureIsRun == false {
+            self.videoCapture.start()
+            videoCaptureIsRun = true
+        }
+    }
+    
+    
 }
 
 // MARK: - VideoCaptureDelegate
@@ -210,6 +227,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
+
 // MARK: - 📏(Performance Measurement) Delegate
 extension ViewController: 📏Delegate {
     func updateMeasure(inferenceTime: Double, executionTime: Double, fps: Int) {
@@ -225,6 +243,8 @@ extension ViewController: 📏Delegate {
         }
     }
 }
+
+
 
 class MovingAverageFilter {
     private var arr: [Int] = []

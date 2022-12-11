@@ -60,11 +60,11 @@ class DrawingBoundingBoxView: UIView {
         let confidencePercentageString = String(format: "%.0f", (prediction.confidence * 100))
         
         
-        print("****************************************************************************")
+        print("**************************************************************************")
         print("Width: \(bounds.width) -- Height: \(bounds.height)")
         print("BG Rect: \(bgRect)")
         print("Confidence: \(confidencePercentageString)%")
-        print("****************************************************************************")
+        print("**************************************************************************")
         
         if let labelString = labelString {
 //            label.text = "\(labelString) - A: \(bgRect.width * bgRect.height)"
