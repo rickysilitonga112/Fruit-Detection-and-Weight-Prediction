@@ -21,8 +21,8 @@
 		5677CBDA292D458E009EEC5A /* FruitDetectionV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */; };
 		5684B1132930AD940011620E /* WeightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1122930AD940011620E /* WeightManager.swift */; };
 		56941C0329436E9300BF87D6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56941C0229436E9300BF87D6 /* DetailViewController.swift */; };
-		56941C0429436E9300BF87D6 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56941C0229436E9300BF87D6 /* DetailViewController.swift */; };
-		56B24CF229460F5C00605882 /* NutritionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B24CF129460F5C00605882 /* NutritionModel.swift */; };
+		56B24CF429465D8D00605882 /* Fruit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B24CF329465D8D00605882 /* Fruit.swift */; };
+		56B24CF9294664EF00605882 /* NutritionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B24CF8294664EF00605882 /* NutritionManager.swift */; };
 		C427E6B228C5D85B001279AD /* UIImage+CVPixelBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 553366CE220489DD00A67647 /* UIImage+CVPixelBuffer.swift */; };
 		C427E6C928C5DAF3001279AD /* IMG_8564.JPG in Resources */ = {isa = PBXBuildFile; fileRef = C427E6C828C5DAF3001279AD /* IMG_8564.JPG */; };
 /* End PBXBuildFile section */
@@ -55,7 +55,8 @@
 		5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FruitDetectionV3.mlmodel; sourceTree = "<group>"; };
 		5684B1122930AD940011620E /* WeightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightManager.swift; sourceTree = "<group>"; };
 		56941C0229436E9300BF87D6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		56B24CF129460F5C00605882 /* NutritionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionModel.swift; sourceTree = "<group>"; };
+		56B24CF329465D8D00605882 /* Fruit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fruit.swift; sourceTree = "<group>"; };
+		56B24CF8294664EF00605882 /* NutritionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NutritionManager.swift; sourceTree = "<group>"; };
 		C427E6C828C5DAF3001279AD /* IMG_8564.JPG */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_8564.JPG; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,16 +111,13 @@
 			children = (
 				554F149F220362AB00B828B0 /* Main.storyboard */,
 				554F149B220362AB00B828B0 /* AppDelegate.swift */,
-				554F149D220362AB00B828B0 /* ViewController.swift */,
-				558918EC2208218800F182BA /* DrawingBoundingBoxView.swift */,
 				71B8322322E2B0BC00207D05 /* ultils */,
-				565E81F7290C77D800E453D6 /* mlmodel */,
+				56B24CF52946609900605882 /* Model */,
+				56B24CF62946647F00605882 /* Controller */,
+				558918EC2208218800F182BA /* DrawingBoundingBoxView.swift */,
 				554F14A2220362AC00B828B0 /* Assets.xcassets */,
 				554F14A4220362AC00B828B0 /* LaunchScreen.storyboard */,
 				554F14A7220362AC00B828B0 /* Info.plist */,
-				5684B1122930AD940011620E /* WeightManager.swift */,
-				56941C0229436E9300BF87D6 /* DetailViewController.swift */,
-				56B24CF129460F5C00605882 /* NutritionModel.swift */,
 			);
 			path = "ObjectDetection-CoreML";
 			sourceTree = "<group>";
@@ -130,6 +128,34 @@
 				5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */,
 			);
 			path = mlmodel;
+			sourceTree = "<group>";
+		};
+		56B24CF52946609900605882 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				565E81F7290C77D800E453D6 /* mlmodel */,
+				56B24CF329465D8D00605882 /* Fruit.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		56B24CF62946647F00605882 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				56B24CF7294664E100605882 /* Manager */,
+				554F149D220362AB00B828B0 /* ViewController.swift */,
+				56941C0229436E9300BF87D6 /* DetailViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		56B24CF7294664E100605882 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				5684B1122930AD940011620E /* WeightManager.swift */,
+				56B24CF8294664EF00605882 /* NutritionManager.swift */,
+			);
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		71B8322322E2B0BC00207D05 /* ultils */ = {
@@ -247,7 +273,6 @@
 				5677CBDA292D458E009EEC5A /* FruitDetectionV3.mlmodel in Sources */,
 				553366C62204898800A67647 /* ObjectDetection_CoreMLTests.swift in Sources */,
 				C427E6B228C5D85B001279AD /* UIImage+CVPixelBuffer.swift in Sources */,
-				56941C0429436E9300BF87D6 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,11 +282,12 @@
 			files = (
 				56941C0329436E9300BF87D6 /* DetailViewController.swift in Sources */,
 				554F149E220362AB00B828B0 /* ViewController.swift in Sources */,
+				56B24CF9294664EF00605882 /* NutritionManager.swift in Sources */,
 				5684B1132930AD940011620E /* WeightManager.swift in Sources */,
 				558918EF22089FFE00F182BA /* Measure.swift in Sources */,
 				558918ED2208218800F182BA /* DrawingBoundingBoxView.swift in Sources */,
+				56B24CF429465D8D00605882 /* Fruit.swift in Sources */,
 				553366CF220489DD00A67647 /* UIImage+CVPixelBuffer.swift in Sources */,
-				56B24CF229460F5C00605882 /* NutritionModel.swift in Sources */,
 				554F14AE220362DA00B828B0 /* VideoCapture.swift in Sources */,
 				5677CBD9292D458E009EEC5A /* FruitDetectionV3.mlmodel in Sources */,
 				554F149C220362AB00B828B0 /* AppDelegate.swift in Sources */,
