@@ -11,7 +11,7 @@ import Vision
 import CoreMedia
 
 class ViewController: UIViewController {
-
+    
     // MARK: - UI Properties
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var boxesView: DrawingBoundingBoxView!
@@ -187,6 +187,34 @@ extension ViewController {
     }
 }
 
+
+
+
+// MARK: - TableViewDelegate
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = storyboard?.instantiateViewController(withIdentifier: "detail_vc") as! DetailViewController
+        
+        let fruit = Fruit(
+            name: "potato",
+            nutritions: [
+                Nutrition(type: .calories, value: 76),
+                Nutrition(type: .protein, value: 2),
+                Nutrition(type: .fat, value: 0.1),
+                Nutrition(type: .carbohydrates, value: 17),
+                Nutrition(type: .sugar, value: 0.8)
+            ]
+        )
+        
+        
+        vc.fruit = fruit
+        
+        present(vc, animated: true)
+    }
+}
+
+
+// MARK: - TableViewDataSource
 extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return predictions.count

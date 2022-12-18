@@ -28,7 +28,7 @@ struct Fruit {
             Fruit(
                 name: "apple",
                 nutritions: [
-                    
+                     
                 ]
             ),
             Fruit(
