@@ -19,7 +19,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         nutritionTableView.dataSource = self
 
         // Do any additional setup after loading the view.
-        
+        self.title = fruit?.name ?? "Unknown"
         
     }
     

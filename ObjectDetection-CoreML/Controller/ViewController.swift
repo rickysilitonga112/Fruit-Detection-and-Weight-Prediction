@@ -21,6 +21,9 @@ class ViewController: UIViewController {
     @IBOutlet weak var etimeLabel: UILabel!
     @IBOutlet weak var fpsLabel: UILabel!
     
+    @IBOutlet weak var startStopButton: UIBarButtonItem!
+    
+    
     // MARK - Core ML model
     // YOLOv3(iOS12+), YOLOv3FP16(iOS12+), YOLOv3Int8LUT(iOS12+)
     // YOLOv3Tiny(iOS12+), YOLOv3TinyFP16(iOS12+), YOLOv3TinyInt8LUT(iOS12+)
@@ -63,6 +66,12 @@ class ViewController: UIViewController {
         
         // setup delegate for performance measurement
         👨‍🔧.delegate = self
+        
+        
+        
+        //appearance setup
+        startStopButton.title = "PAUSE CAMERA"
+        startStopButton.tintColor = .red
     }
     
     override func didReceiveMemoryWarning() {
@@ -124,11 +133,26 @@ class ViewController: UIViewController {
     @IBAction func stopButtonPressed(_ sender: Any) {
         
         if videoCaptureIsRun {
+            // set appearance
+            startStopButton.title = "START CAMERA"
+            startStopButton.image = UIImage(named: "play.circle.fill")
+            startStopButton.tintColor = UIColor.blue
+            
+            
             self.videoCapture.stop()
             videoCaptureIsRun = false
+            
         } else if videoCaptureIsRun == false {
+
+            // set appearance
+            startStopButton.title = "PAUSE CAMERA"
+            startStopButton.image = UIImage(named: "pause.circle.fill")
+            startStopButton.tintColor = UIColor.red
+            
             self.videoCapture.start()
             videoCaptureIsRun = true
+            
+           
         }
     }
     
@@ -193,23 +217,32 @@ extension ViewController {
 // MARK: - TableViewDelegate
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = storyboard?.instantiateViewController(withIdentifier: "detail_vc") as! DetailViewController
+//        let vc = storyboard?.instantiateViewController(withIdentifier: "detail_vc") as! DetailViewController
         
-        let fruit = Fruit(
-            name: "potato",
-            nutritions: [
-                Nutrition(type: .calories, value: 76),
-                Nutrition(type: .protein, value: 2),
-                Nutrition(type: .fat, value: 0.1),
-                Nutrition(type: .carbohydrates, value: 17),
-                Nutrition(type: .sugar, value: 0.8)
-            ]
-        )
-        
-        
-        vc.fruit = fruit
-        
-        present(vc, animated: true)
+        performSegue(withIdentifier: "gotoDetailView", sender: self)
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "gotoDetailView" {
+            guard let vc = segue.destination as? DetailViewController else {
+                return
+            }
+            
+            let fruit = Fruit(
+                name: "potato",
+                nutritions: [
+                    Nutrition(type: .calories, value: 76),
+                    Nutrition(type: .protein, value: 2),
+                    Nutrition(type: .fat, value: 0.1),
+                    Nutrition(type: .carbohydrates, value: 17),
+                    Nutrition(type: .sugar, value: 0.8)
+                ]
+            )
+            
+            vc.fruit = fruit
+        }
     }
 }
 

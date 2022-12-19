@@ -132,7 +132,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dMe-e0-ehB">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="stop.circle" catalog="system" id="gDY-FG-cKX">
+                        <barButtonItem key="rightBarButtonItem" title="PAUSE CAMERA" id="gDY-FG-cKX">
                             <connections>
                                 <action selector="stopButtonPressed:" destination="BYZ-38-t0r" id="5bo-nU-Wfl"/>
                             </connections>
@@ -144,7 +144,9 @@
                         <outlet property="fpsLabel" destination="Zgq-QP-6fm" id="gGI-kb-xyD"/>
                         <outlet property="inferenceLabel" destination="N38-sj-CDC" id="uSG-Qg-PyI"/>
                         <outlet property="labelsTableView" destination="t4v-7L-Eav" id="cnb-zw-15z"/>
+                        <outlet property="startStopButton" destination="gDY-FG-cKX" id="zuS-0l-syJ"/>
                         <outlet property="videoPreview" destination="UrN-1E-L02" id="nnD-GY-0P1"/>
+                        <segue destination="xv7-QD-QWp" kind="show" identifier="gotoDetailView" id="Bb9-zb-Eo4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -159,9 +161,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hvw-Vo-4BL">
-                                <rect key="frame" x="0.0" y="148" width="375" height="664"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="hvw-Vo-4BL">
+                                <rect key="frame" x="0.0" y="105" width="375" height="707"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nutritionCell" textLabel="vdU-09-rMa" detailTextLabel="5uR-1N-MEf" style="IBUITableViewCellStyleValue1" id="j7a-4Z-kw6">
@@ -193,7 +194,14 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YoM-QM-lXX"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hvw-Vo-4BL" firstAttribute="top" secondItem="YoM-QM-lXX" secondAttribute="top" constant="14" id="14P-cz-nK7"/>
+                            <constraint firstItem="hvw-Vo-4BL" firstAttribute="trailing" secondItem="YoM-QM-lXX" secondAttribute="trailing" id="Fa8-sO-Kei"/>
+                            <constraint firstItem="hvw-Vo-4BL" firstAttribute="leading" secondItem="YoM-QM-lXX" secondAttribute="leading" id="lUJ-o3-303"/>
+                            <constraint firstAttribute="bottom" secondItem="hvw-Vo-4BL" secondAttribute="bottom" id="yHM-UJ-MEq"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="s3o-dF-MmZ"/>
                     <connections>
                         <outlet property="nutritionTableView" destination="hvw-Vo-4BL" id="2LH-Qs-dVc"/>
                     </connections>
@@ -222,7 +230,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="stop.circle" catalog="system" width="128" height="123"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
