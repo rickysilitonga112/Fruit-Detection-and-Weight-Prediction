@@ -31,18 +31,8 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Z6-cB-tNG">
                                 <rect key="frame" x="0.0" y="91" width="375" height="20"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="fps: xx" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Zgq-QP-6fm">
-                                        <rect key="frame" x="251.33333333333334" y="1" width="107.66666666666666" height="18"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="jPp-9u-2rP"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Inference: xxx ms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N38-sj-CDC">
-                                        <rect key="frame" x="16.000000000000007" y="1" width="107.66666666666669" height="18"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Food Detection Using YOLO" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="N38-sj-CDC">
+                                        <rect key="frame" x="16" y="1" width="135.33333333333334" height="18"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="18" id="3XV-Ir-qHb"/>
@@ -51,28 +41,11 @@
                                         <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Execution: xxx ms" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="9ZV-Kc-mOq">
-                                        <rect key="frame" x="133.66666666666666" y="1" width="107.66666666666666" height="18"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="18" id="hEC-5A-Vou"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Courier-Bold" family="Courier" pointSize="9"/>
-                                        <color key="textColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.80182470029999997" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Zgq-QP-6fm" firstAttribute="width" secondItem="N38-sj-CDC" secondAttribute="width" id="ADF-Mx-1qE"/>
-                                    <constraint firstItem="9ZV-Kc-mOq" firstAttribute="width" secondItem="N38-sj-CDC" secondAttribute="width" id="AHJ-Io-Agy"/>
-                                    <constraint firstItem="Zgq-QP-6fm" firstAttribute="leading" secondItem="9ZV-Kc-mOq" secondAttribute="trailing" constant="10" id="Kfu-I7-iDN"/>
                                     <constraint firstItem="N38-sj-CDC" firstAttribute="leading" secondItem="0Z6-cB-tNG" secondAttribute="leading" constant="16" id="M2i-cU-sDI"/>
-                                    <constraint firstItem="9ZV-Kc-mOq" firstAttribute="baseline" secondItem="N38-sj-CDC" secondAttribute="baseline" id="ULx-T6-4Ph"/>
-                                    <constraint firstItem="9ZV-Kc-mOq" firstAttribute="leading" secondItem="N38-sj-CDC" secondAttribute="trailing" constant="10" id="dsa-8X-Uek"/>
-                                    <constraint firstItem="Zgq-QP-6fm" firstAttribute="centerY" secondItem="0Z6-cB-tNG" secondAttribute="centerY" id="fqI-yJ-Xzr"/>
                                     <constraint firstAttribute="height" constant="20" id="qJ3-ZB-YPy"/>
-                                    <constraint firstAttribute="trailing" secondItem="Zgq-QP-6fm" secondAttribute="trailing" constant="16" id="uHg-Nw-KP9"/>
                                     <constraint firstItem="N38-sj-CDC" firstAttribute="centerY" secondItem="0Z6-cB-tNG" secondAttribute="centerY" id="xv0-j4-YRF"/>
                                 </constraints>
                             </view>
@@ -133,6 +106,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="dMe-e0-ehB">
                         <barButtonItem key="rightBarButtonItem" title="PAUSE CAMERA" id="gDY-FG-cKX">
+                            <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
                                 <action selector="stopButtonPressed:" destination="BYZ-38-t0r" id="5bo-nU-Wfl"/>
                             </connections>
@@ -140,9 +114,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="boxesView" destination="am0-wE-ezc" id="bu5-bD-6eD"/>
-                        <outlet property="etimeLabel" destination="9ZV-Kc-mOq" id="73G-oz-DYs"/>
-                        <outlet property="fpsLabel" destination="Zgq-QP-6fm" id="gGI-kb-xyD"/>
-                        <outlet property="inferenceLabel" destination="N38-sj-CDC" id="uSG-Qg-PyI"/>
                         <outlet property="labelsTableView" destination="t4v-7L-Eav" id="cnb-zw-15z"/>
                         <outlet property="startStopButton" destination="gDY-FG-cKX" id="zuS-0l-syJ"/>
                         <outlet property="videoPreview" destination="UrN-1E-L02" id="nnD-GY-0P1"/>
@@ -232,6 +203,9 @@
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

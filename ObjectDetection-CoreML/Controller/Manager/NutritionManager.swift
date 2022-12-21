@@ -9,7 +9,7 @@
 import Foundation
 
 struct NutritionManager {
-    let fruitList = Fruit.getNutrition()
+    let fruitList = Fruit.getFruits()
     
     
     func getFruitIndex(_ fruit: String) -> Int? {
@@ -18,8 +18,16 @@ struct NutritionManager {
                 return i
             }
         }
-        
         return nil
     }
     
+    
+    func getNutritionUnit(nutrition: NutritionType) -> String {
+        switch nutrition {
+        case .calories:
+            return "kcal"
+        default:
+            return "gram"
+        }
+    }
 }

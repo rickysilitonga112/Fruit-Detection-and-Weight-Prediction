@@ -11,26 +11,23 @@ import Vision
 import CoreMedia
 
 class ViewController: UIViewController {
-    
     // MARK: - UI Properties
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var boxesView: DrawingBoundingBoxView!
     @IBOutlet weak var labelsTableView: UITableView!
-    
-    @IBOutlet weak var inferenceLabel: UILabel!
-    @IBOutlet weak var etimeLabel: UILabel!
-    @IBOutlet weak var fpsLabel: UILabel!
-    
     @IBOutlet weak var startStopButton: UIBarButtonItem!
     
+    // let objectDectectionModel = FruitDetectionV3()
+    let objectDectectionModel: FruitDetectionV3 = {
+        do {
+            let config = MLModelConfiguration()
+            return try FruitDetectionV3(configuration: config)
+        } catch {
+            print(error)
+            fatalError("Couldn't create SleepCalculator")
+        }
+    }()
     
-    // MARK - Core ML model
-    // YOLOv3(iOS12+), YOLOv3FP16(iOS12+), YOLOv3Int8LUT(iOS12+)
-    // YOLOv3Tiny(iOS12+), YOLOv3TinyFP16(iOS12+), YOLOv3TinyInt8LUT(iOS12+)
-    // MobileNetV2_SSDLite(iOS12+), ObjectDetector(iOS12+)
-    // yolov5n(iOS13+), yolov5s(iOS13+), yolov5m(iOS13+), yolov5l(iOS13+), yolov5x(iOS13+)
-    // yolov5n6(iOS13+), yolov5s6(iOS13+), yolov5m6(iOS13+), yolov5l6(iOS13+), yolov5x6(iOS13+)
-    let objectDectectionModel = FruitDetectionV3()
     
     // MARK: - Vision Properties
     var request: VNCoreMLRequest?
@@ -44,15 +41,11 @@ class ViewController: UIViewController {
     
     // MARK: - TableView Data
     var predictions: [VNRecognizedObjectObservation] = []
-    
-    // MARK - Performance Measurement Property
-    private let 👨‍🔧 = 📏()
-    
     var videoCaptureIsRun = false
     
-    let maf1 = MovingAverageFilter()
-    let maf2 = MovingAverageFilter()
-    let maf3 = MovingAverageFilter()
+    var selectedRow: Int?
+    var weightManager = WeightManager()
+    var nutritionManager = NutritionManager()
     
     // MARK: - View Controller Life Cycle
     override func viewDidLoad() {
@@ -64,12 +57,10 @@ class ViewController: UIViewController {
         // setup camera
         setUpCamera()
         
-        // setup delegate for performance measurement
-        👨‍🔧.delegate = self
-        
-        
+        videoCaptureIsRun = false
         
         //appearance setup
+        
         startStopButton.title = "PAUSE CAMERA"
         startStopButton.tintColor = .red
     }
@@ -99,7 +90,7 @@ class ViewController: UIViewController {
             fatalError("fail to create vision model")
         }
     }
-
+    
     // MARK: - SetUp Video
     func setUpCamera() {
         videoCapture = VideoCapture()
@@ -131,32 +122,22 @@ class ViewController: UIViewController {
     
     
     @IBAction func stopButtonPressed(_ sender: Any) {
-        
         if videoCaptureIsRun {
             // set appearance
             startStopButton.title = "START CAMERA"
-            startStopButton.image = UIImage(named: "play.circle.fill")
             startStopButton.tintColor = UIColor.blue
-            
             
             self.videoCapture.stop()
             videoCaptureIsRun = false
-            
         } else if videoCaptureIsRun == false {
-
             // set appearance
             startStopButton.title = "PAUSE CAMERA"
-            startStopButton.image = UIImage(named: "pause.circle.fill")
             startStopButton.tintColor = UIColor.red
             
             self.videoCapture.start()
             videoCaptureIsRun = true
-            
-           
         }
     }
-    
-    
 }
 
 // MARK: - VideoCaptureDelegate
@@ -165,9 +146,6 @@ extension ViewController: VideoCaptureDelegate {
         // the captured image from camera is contained on pixelBuffer
         if !self.isInferencing, let pixelBuffer = pixelBuffer {
             self.isInferencing = true
-            
-            // start of measure
-            self.👨‍🔧.🎬👏()
             
             // predict!
             self.predictUsingVision(pixelBuffer: pixelBuffer)
@@ -186,63 +164,55 @@ extension ViewController {
     
     // MARK: - Post-processing
     func visionRequestDidComplete(request: VNRequest, error: Error?) {
-        self.👨‍🔧.🏷(with: "endInference")
+        //        self.👨‍🔧.🏷(with: "endInference")
         if let predictions = request.results as? [VNRecognizedObjectObservation] {
-//            print(predictions.first?.labels.first?.identifier ?? "nil")
-//            print(predictions.first?.labels.first?.confidence ?? -1)
+            //            print(predictions.first?.labels.first?.identifier ?? "nil")
+            //            print(predictions.first?.labels.first?.confidence ?? -1)
             
             self.predictions = predictions
             DispatchQueue.main.async {
                 self.boxesView.predictedObjects = predictions
                 self.labelsTableView.reloadData()
-
-                // end of measure
-                self.👨‍🔧.🎬🤚()
-                
                 self.isInferencing = false
             }
         } else {
-            // end of measure
-            self.👨‍🔧.🎬🤚()
-            
             self.isInferencing = false
         }
         self.semaphore.signal()
     }
 }
 
-
-
-
 // MARK: - TableViewDelegate
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let vc = storyboard?.instantiateViewController(withIdentifier: "detail_vc") as! DetailViewController
+        selectedRow = indexPath.row
         
+        print("DEBUG: SELECTED ROW: \(selectedRow ?? 9999999)")
         performSegue(withIdentifier: "gotoDetailView", sender: self)
     }
     
-    
-    
+    // segue setting for navigation to detail view controller
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "gotoDetailView" {
-            guard let vc = segue.destination as? DetailViewController else {
-                return
+        
+        if let selectedRow = selectedRow {
+            if segue.identifier == "gotoDetailView" {
+                guard let vc = segue.destination as? DetailViewController else {
+                    return
+                }
+                
+                let fruit =  predictions[selectedRow].label
+                let area = predictions[selectedRow].boundingBox.width * predictions[selectedRow].boundingBox.height
+                
+                if let fruit = fruit {
+                    if let index = nutritionManager.getFruitIndex(fruit) {
+                        vc.fruit = nutritionManager.fruitList[index]
+                        vc.weightPrediction = WeightManager.predictWeight(fruit: fruit, area: area)
+                    }
+                    
+                }
             }
-            
-            let fruit = Fruit(
-                name: "potato",
-                nutritions: [
-                    Nutrition(type: .calories, value: 76),
-                    Nutrition(type: .protein, value: 2),
-                    Nutrition(type: .fat, value: 0.1),
-                    Nutrition(type: .carbohydrates, value: 17),
-                    Nutrition(type: .sugar, value: 0.8)
-                ]
-            )
-            
-            vc.fruit = fruit
         }
+        
     }
 }
 
@@ -257,10 +227,10 @@ extension ViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "InfoCell") else {
             return UITableViewCell()
         }
-
-        let rectString = predictions[indexPath.row].boundingBox.toString(digit: 2)
+        
+//        let rectString = predictions[indexPath.row].boundingBox.toString(digit: 2)
         let confidence = predictions[indexPath.row].labels.first?.confidence ?? -1
-        let confidenceString = String(format: "%.2f", confidence/*Math.sigmoid(confidence)*/)
+//        let confidenceString = String(format: "%.2f", confidence/*Math.sigmoid(confidence)*/)
         
         cell.textLabel?.text = predictions[indexPath.row].label ?? "N/A"
         
@@ -270,10 +240,10 @@ extension ViewController: UITableViewDataSource {
         
         
         print("isi : \(predictions[indexPath.row].boundingBox)")
-//        cell.detailTextLabel?.text = "\(rectString), \(confidenceString)"
+        //        cell.detailTextLabel?.text = "\(rectString), \(confidenceString)"
         
         let area = predictions[indexPath.row].boundingBox.width * predictions[indexPath.row].boundingBox.height
-//        let areaString = String(format: "%.2f", area)
+        //        let areaString = String(format: "%.2f", area)
         let areaString = String(format: "%.5f", area)
         
         var weightPrediction: Double = 0
@@ -287,42 +257,3 @@ extension ViewController: UITableViewDataSource {
         return cell
     }
 }
-
-
-// MARK: - 📏(Performance Measurement) Delegate
-extension ViewController: 📏Delegate {
-    func updateMeasure(inferenceTime: Double, executionTime: Double, fps: Int) {
-        //print(executionTime, fps)
-        DispatchQueue.main.async {
-            self.maf1.append(element: Int(inferenceTime*1000.0))
-            self.maf2.append(element: Int(executionTime*1000.0))
-            self.maf3.append(element: fps)
-            
-            self.inferenceLabel.text = "inference: \(self.maf1.averageValue) ms"
-            self.etimeLabel.text = "execution: \(self.maf2.averageValue) ms"
-            self.fpsLabel.text = "fps: \(self.maf3.averageValue)"
-        }
-    }
-}
-
-
-
-class MovingAverageFilter {
-    private var arr: [Int] = []
-    private let maxCount = 10
-    
-    public func append(element: Int) {
-        arr.append(element)
-        if arr.count > maxCount {
-            arr.removeFirst()
-        }
-    }
-    
-    public var averageValue: Int {
-        guard !arr.isEmpty else { return 0 }
-        let sum = arr.reduce(0) { $0 + $1 }
-        return Int(Double(sum) / Double(arr.count))
-    }
-}
-
-

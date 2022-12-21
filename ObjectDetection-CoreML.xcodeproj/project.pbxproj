@@ -16,7 +16,6 @@
 		554F14A6220362AC00B828B0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 554F14A4220362AC00B828B0 /* LaunchScreen.storyboard */; };
 		554F14AE220362DA00B828B0 /* VideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554F14AD220362DA00B828B0 /* VideoCapture.swift */; };
 		558918ED2208218800F182BA /* DrawingBoundingBoxView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558918EC2208218800F182BA /* DrawingBoundingBoxView.swift */; };
-		558918EF22089FFE00F182BA /* Measure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558918EE22089FFE00F182BA /* Measure.swift */; };
 		5677CBD9292D458E009EEC5A /* FruitDetectionV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */; };
 		5677CBDA292D458E009EEC5A /* FruitDetectionV3.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */; };
 		5684B1132930AD940011620E /* WeightManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5684B1122930AD940011620E /* WeightManager.swift */; };
@@ -51,7 +50,6 @@
 		554F14A7220362AC00B828B0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		554F14AD220362DA00B828B0 /* VideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoCapture.swift; sourceTree = "<group>"; };
 		558918EC2208218800F182BA /* DrawingBoundingBoxView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingBoundingBoxView.swift; sourceTree = "<group>"; };
-		558918EE22089FFE00F182BA /* Measure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Measure.swift; sourceTree = "<group>"; };
 		5677CBD8292D458E009EEC5A /* FruitDetectionV3.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = FruitDetectionV3.mlmodel; sourceTree = "<group>"; };
 		5684B1122930AD940011620E /* WeightManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeightManager.swift; sourceTree = "<group>"; };
 		56941C0229436E9300BF87D6 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -162,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				554F14AD220362DA00B828B0 /* VideoCapture.swift */,
-				558918EE22089FFE00F182BA /* Measure.swift */,
 				553366CE220489DD00A67647 /* UIImage+CVPixelBuffer.swift */,
 			);
 			path = ultils;
@@ -284,7 +281,6 @@
 				554F149E220362AB00B828B0 /* ViewController.swift in Sources */,
 				56B24CF9294664EF00605882 /* NutritionManager.swift in Sources */,
 				5684B1132930AD940011620E /* WeightManager.swift in Sources */,
-				558918EF22089FFE00F182BA /* Measure.swift in Sources */,
 				558918ED2208218800F182BA /* DrawingBoundingBoxView.swift in Sources */,
 				56B24CF429465D8D00605882 /* Fruit.swift in Sources */,
 				553366CF220489DD00A67647 /* UIImage+CVPixelBuffer.swift in Sources */,

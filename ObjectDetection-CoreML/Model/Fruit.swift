@@ -23,7 +23,7 @@ struct Fruit {
     
     
     // generate nutrition while call the function
-    static func getNutrition() -> [Fruit] {
+    static func getFruits() -> [Fruit] {
         let fruits = [
             Fruit(
                 name: "apple",

@@ -9,32 +9,26 @@
 import UIKit
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    var fruit: Fruit?
-    
-
     @IBOutlet weak var nutritionTableView: UITableView!
+    
+    var fruit: Fruit?
+    var weightPrediction: Double?
+    
+    var nutritionManager = NutritionManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         nutritionTableView.delegate = self
         nutritionTableView.dataSource = self
 
-        // Do any additional setup after loading the view.
-        self.title = fruit?.name ?? "Unknown"
+        guard let fruit = fruit else {
+            fatalError("Fruit is nill")
+        }
         
+        self.title = "\(fruit.name)"
+        
+        print(fruit)
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-    
-    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -50,10 +44,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             return cell
         }
+        
         cell.textLabel?.text = convertNutritionToString(nutrition: fruit.nutritions[indexPath.row].type)
         
-        cell.detailTextLabel?.text = String(format: "%.2f", fruit.nutritions[indexPath.row].value)
-        
+        cell.detailTextLabel?.text = "\(String(format: "%.2f", fruit.nutritions[indexPath.row].value))"
         return cell
     }
     
