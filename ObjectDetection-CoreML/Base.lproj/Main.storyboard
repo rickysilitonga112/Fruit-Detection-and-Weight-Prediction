@@ -108,14 +108,14 @@
                         <barButtonItem key="rightBarButtonItem" title="PAUSE CAMERA" id="gDY-FG-cKX">
                             <color key="tintColor" systemColor="systemRedColor"/>
                             <connections>
-                                <action selector="stopButtonPressed:" destination="BYZ-38-t0r" id="5bo-nU-Wfl"/>
+                                <action selector="pauseCameraPressed:" destination="BYZ-38-t0r" id="Ign-VK-dzg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="boxesView" destination="am0-wE-ezc" id="bu5-bD-6eD"/>
                         <outlet property="labelsTableView" destination="t4v-7L-Eav" id="cnb-zw-15z"/>
-                        <outlet property="startStopButton" destination="gDY-FG-cKX" id="zuS-0l-syJ"/>
+                        <outlet property="pauseCameraButton" destination="gDY-FG-cKX" id="sse-TI-2eE"/>
                         <outlet property="videoPreview" destination="UrN-1E-L02" id="nnD-GY-0P1"/>
                         <segue destination="xv7-QD-QWp" kind="show" identifier="gotoDetailView" id="Bb9-zb-Eo4"/>
                     </connections>

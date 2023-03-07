@@ -15,7 +15,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var videoPreview: UIView!
     @IBOutlet weak var boxesView: DrawingBoundingBoxView!
     @IBOutlet weak var labelsTableView: UITableView!
-    @IBOutlet weak var startStopButton: UIBarButtonItem!
+    
+    @IBOutlet weak var pauseCameraButton: UIBarButtonItem!
     
     // let objectDectectionModel = FruitDetectionV3()
     let objectDectectionModel: FruitDetectionV3 = {
@@ -41,7 +42,9 @@ class ViewController: UIViewController {
     
     // MARK: - TableView Data
     var predictions: [VNRecognizedObjectObservation] = []
-    var videoCaptureIsRun = false
+    
+    
+    private var videoCaptureIsRun = true
     
     var selectedRow: Int?
     var weightManager = WeightManager()
@@ -60,9 +63,9 @@ class ViewController: UIViewController {
         videoCaptureIsRun = false
         
         //appearance setup
-        
-        startStopButton.title = "PAUSE CAMERA"
-        startStopButton.tintColor = .red
+        // pause camera init
+        pauseCameraButton.title = "PAUSE CAMERA"
+        pauseCameraButton.tintColor = .red
     }
     
     override func didReceiveMemoryWarning() {
@@ -121,19 +124,16 @@ class ViewController: UIViewController {
     }
     
     
-    @IBAction func stopButtonPressed(_ sender: Any) {
+    @IBAction func pauseCameraPressed(_ sender: UIBarButtonItem) {
+        // appareance change
+        pauseCameraButton.title = videoCaptureIsRun ? "START CAMERA" : "STOP CAMERA"
+        print(videoCaptureIsRun)
+        pauseCameraButton.tintColor = videoCaptureIsRun ? .blue : .red
+        
         if videoCaptureIsRun {
-            // set appearance
-            startStopButton.title = "START CAMERA"
-            startStopButton.tintColor = UIColor.blue
-            
             self.videoCapture.stop()
             videoCaptureIsRun = false
-        } else if videoCaptureIsRun == false {
-            // set appearance
-            startStopButton.title = "PAUSE CAMERA"
-            startStopButton.tintColor = UIColor.red
-            
+        } else {
             self.videoCapture.start()
             videoCaptureIsRun = true
         }
@@ -234,25 +234,25 @@ extension ViewController: UITableViewDataSource {
         
         cell.textLabel?.text = predictions[indexPath.row].label ?? "N/A"
         
-        print("Data prediksi: \(String(describing: predictions[indexPath.row].label))" )
-        
-        print("Jumlah array predictions: \(predictions.count)")
-        
-        
-        print("isi : \(predictions[indexPath.row].boundingBox)")
-        //        cell.detailTextLabel?.text = "\(rectString), \(confidenceString)"
+//        print("Data prediksi: \(String(describing: predictions[indexPath.row].label))" )
+//
+//        print("Jumlah array predictions: \(predictions.count)")
+//
+//
+//        print("isi : \(predictions[indexPath.row].boundingBox)")
+//        //        cell.detailTextLabel?.text = "\(rectString), \(confidenceString)"
         
         let area = predictions[indexPath.row].boundingBox.width * predictions[indexPath.row].boundingBox.height
         //        let areaString = String(format: "%.2f", area)
-        let areaString = String(format: "%.5f", area)
+//        let areaString = String(format: "%.5f", area)
         
         var weightPrediction: Double = 0
         
         if let fruitName = predictions[indexPath.row].label {
-            weightPrediction = WeightManager.predictWeight(fruit: fruitName, area: Double(areaString) ?? 0)
+            weightPrediction = WeightManager.predictWeight(fruit: fruitName, area: Double(area))
         }
         
-        cell.detailTextLabel?.text = "Area: \(areaString) Wp: \(weightPrediction)"
+        cell.detailTextLabel?.text = "Weight: \(String(format: "%.2f", weightPrediction))g"
         
         return cell
     }

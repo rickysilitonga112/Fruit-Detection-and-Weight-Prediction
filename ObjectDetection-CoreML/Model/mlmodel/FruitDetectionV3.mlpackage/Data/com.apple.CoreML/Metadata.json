@@ -1,0 +1,13 @@
+{
+  "MLModelVersionStringKey" : "--",
+  "MLModelDescriptionKey" : "Fruit Detection V3",
+  "MLModelCreatorDefinedKey" : {
+    "com.apple.createml.app.tag" : "99.2",
+    "com.apple.createml.version" : "13.0.1",
+    "com.apple.coreml.model.preview.type" : "objectDetector",
+    "iterations" : "10000",
+    "com.apple.createml.app.version" : "4.0"
+  },
+  "MLModelAuthorKey" : "Ricky Silitonga",
+  "MLModelLicenseKey" : "--"
+}

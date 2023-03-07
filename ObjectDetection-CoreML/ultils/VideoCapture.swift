@@ -82,7 +82,13 @@ public class VideoCapture: NSObject {
     
     public func start() {
         if !captureSession.isRunning {
-            captureSession.startRunning()
+            // change the thread to the background thread
+            
+            // if problem happen, remove dispatchque.global and move capture session to the main thread instead of run the capture session in the backgoround thread
+            DispatchQueue.global(qos: .userInitiated).async {
+                self.captureSession.startRunning()
+            }
+           
         }
     }
     

@@ -10,11 +10,19 @@ import Foundation
 
 
 enum NutritionType: CaseIterable {
-    case calories
+    case calories // energi
     case protein
-    case fat
-    case carbohydrates
+    case fat // lemak
+    case carbohydrates // karbohidrat
     case sugar
+    case fiber // serat
+    case vitaminA
+    case vitaminC
+    case vitaminD
+    // mineral
+    case calcium
+    case iron
+    case potassium
 }
 
 struct Fruit {
@@ -30,10 +38,17 @@ struct Fruit {
                 nutritions: [
                     // per 100 g
                     Nutrition(type: .calories, value: 52),
-                    Nutrition(type: .protein, value: 0.3),
-                    Nutrition(type: .fat, value: 0.2),
-                    Nutrition(type: .carbohydrates, value: 14),
-                    Nutrition(type: .sugar, value: 10)
+                    Nutrition(type: .protein, value: 0.26),
+                    Nutrition(type: .fat, value: 0.17),
+                    Nutrition(type: .carbohydrates, value: 13.81),
+                    Nutrition(type: .sugar, value: 10.39),
+                    Nutrition(type: .fiber, value: 2.4),
+                    Nutrition(type: .vitaminA, value: 3),
+                    Nutrition(type: .vitaminC, value: 4.6),
+                    Nutrition(type: .vitaminD, value: 0),
+                    Nutrition(type: .calcium, value: 6),
+                    Nutrition(type: .iron, value: 0.12),
+                    Nutrition(type: .potassium, value: 107)
                 ]
             ),
             Fruit(

@@ -26,8 +26,28 @@ struct NutritionManager {
         switch nutrition {
         case .calories:
             return "kcal"
-        default:
-            return "gram"
+        case .protein:
+            return "g"
+        case .fat:
+            return "g"
+        case .carbohydrates:
+            return "g"
+        case .sugar:
+            return "g"
+        case .fiber:
+            return "g"
+        case .vitaminA:
+            return "mcg"
+        case .vitaminC:
+            return "mg"
+        case .vitaminD:
+            return "mg"
+        case .calcium:
+            return "mg"
+        case .iron:
+            return "mg"
+        case .potassium:
+            return "mg"
         }
     }
 }

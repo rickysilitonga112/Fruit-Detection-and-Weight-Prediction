@@ -25,7 +25,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             fatalError("Fruit is nill")
         }
         
-        self.title = "\(fruit.name)"
+        self.title = "\(fruit.name) - \(String(format: "%.2f", weightPrediction ?? 0))g"
         
         print(fruit)
     }
@@ -44,28 +44,41 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             
             return cell
         }
+        let nutritionType = fruit.nutritions[indexPath.row].type
+        let nutritionVal = (Float((weightPrediction ?? 0)) / 100) * fruit.nutritions[indexPath.row].value
         
-        cell.textLabel?.text = convertNutritionToString(nutrition: fruit.nutritions[indexPath.row].type)
+        cell.textLabel?.text = convertNutritionToString(nutrition: nutritionType)
         
-        cell.detailTextLabel?.text = "\(String(format: "%.2f", fruit.nutritions[indexPath.row].value))"
+        cell.detailTextLabel?.text = "\(String(format: "%.2f", nutritionVal)) \(nutritionManager.getNutritionUnit(nutrition: nutritionType))"
         return cell
     }
     
-    
-    
-    
     private func convertNutritionToString(nutrition: NutritionType) -> String {
         switch nutrition {
-            case .calories:
-                return "Calories"
-            case .protein:
-                return "Protein"
-            case .fat:
-                return "Fat"
-            case .carbohydrates:
-                return "Carbohyrates"
-            case .sugar:
-                return "Sugar"
+        case .calories:
+            return "Calories"
+        case .protein:
+            return "Protein"
+        case .fat:
+            return "Fat"
+        case .carbohydrates:
+            return "Carbohyrates"
+        case .sugar:
+            return "Sugar"
+        case .fiber:
+            return "Fiber"
+        case .vitaminA:
+            return "Vitamin A"
+        case .vitaminC:
+            return "Vitamin C"
+        case .vitaminD:
+            return "Vitamin D"
+        case .calcium:
+            return "Calcium"
+        case .iron:
+            return "Iron"
+        case .potassium:
+            return "Potassium"
         }
     }
 }
